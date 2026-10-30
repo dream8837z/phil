@@ -8153,3 +8153,26 @@ with the one-liner in journal/retros/DEEP-2026-10-21.md.
   Their headings are indexed under "Archived settlement updates". That saved about 25KB (4%).
   The real cut is lifting the live rules out of "Market selection" (80KB) and the
   mechanical-econ carve-out (46KB), and that is still owed.
+
+## RETRO-20261030-1150 ruling: count-threshold utterance markets need per-instance counts
+
+Two settled misses share one shape (RETRO-20261030-1150). `09f648986980` (Burnham
+"Mr Speaker" 30+ at PMQs, own 0.80 vs mid 0.50, LOST, dBrier +0.39) stretched a 2/2
+presence Laplace onto a 30+ COUNT threshold; `8f32305baaa6` (Burnham says "Trump" at
+PMQs, own 0.62 vs mid 0.375, LOST, +0.244) is topic-dependent presence stretched by
+the same 2/2 base. The book — flat 0.50 and 0.375 on placeholder-wide spreads — was
+right both times. A "PM opens with Mr Speaker" habit contributes ~2 mentions to a
+30+ threshold, not 30.
+
+**Rule.** A presence-frequency base (market-series k/n of whether an utterance
+happened at all) prices PRESENCE, not COUNT. When the market's threshold is a count
+(N+ times), the raw estimate must come from per-instance counts of prior instances
+(transcript counts or a reported tally), not the presence Laplace; when those counts
+are unknowable this cycle, the estimate stays near the book (within min_edge of the
+mid) and is recorded market-agrees. Topic-dependent presence reads (a word said only
+if a specific question comes) keep their topic discount but do not inherit a 2/2
+presence rate above ~0.5 without a quoted instance rate.
+
+This is a raw-estimator discipline, not a registry rule: it governs how the raw is
+formed, so no `--rule` tag applies. Gate stays: Yes-side say-the-word bets remain
+suspended regardless.
